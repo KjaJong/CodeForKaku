@@ -40,12 +40,12 @@ app.get('/kakutest', function(req, res){
 })
 
 app.get('/Bon', function(req, res){
-	var kakuOn = exec('sh ../wiringPi/examples/lights/kaku B C on);
+	var kakuOn = exec('../wiringPi/examples/lights/kaku B C on');
 	res.end("Kaku should be on.");
 })
 
 app.get('/Boff', function(req, res){
-	var kakuOn = exec('sh ../wiringPi/examples/lights/kaku B C off);
+	var kakuOn = exec('../wiringPi/examples/lights/kaku B C off');
 	res.end("Kaku should be off.");
 })
 

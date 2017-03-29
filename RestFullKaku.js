@@ -32,20 +32,20 @@ app.get('/test', function(req, res){
 });
 
 app.get('/kakutest', function(req, res){
-	var testscript = exec('sh HelloWorld.sh ../');
+	var testscript = exec('sh ../HelloWorld.sh');
 	testscript.stdout.on('data', function(data){
 	console.log(data);
 	res.end(data);
 	});
 })
 
-app.get('/on', function(req, res){
-	//Send code to switch the kaku on
+app.get('/Bon', function(req, res){
+	var kakuOn = exec('sh ../wiringPi/examples/lights/kaku B C on);
 	res.end("Kaku should be on.");
 })
 
-app.get('/off', function(req, res){
-	//Send code to switch the kaku off
+app.get('/Boff', function(req, res){
+	var kakuOn = exec('sh ../wiringPi/examples/lights/kaku B C off);
 	res.end("Kaku should be off.");
 })
 

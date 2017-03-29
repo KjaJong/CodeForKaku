@@ -1,10 +1,9 @@
 var express = require('express');
-var http = require('http');
+var http = require('http'); //Is this really needed?
 var app = express();
 
-//app.use(express['static](_dirname);//Edit this on the pi
+//app.use(express['static'](_dirname);//Edit this on the pi
 
-//Server functions go here
 app.get('/test', function(req, res){
 	console.log("Received a test call.")
 	res.end("Test succesfull.");

@@ -2,7 +2,11 @@ var express = require('express');
 var app = express();
 var http = require('http');
 var exec = require('child_process').exec;
-var testscript = exec('sh HelloWorld.sh')
+var testscript = exec('sh HelloWorld.sh');
+
+testscript.stdout.on('data', function(data){
+	console.log(data);
+});
 
 
 var inputs = [    { pin: '11', gpio: '17', value: 1 },

@@ -1,6 +1,8 @@
 var express = require('express');
+var http = require('http');
 var app = express();
-var fs = require("fs");
+
+//app.use(express['static](_dirname);//Edit this on the pi
 
 //Server functions go here
 app.get('/test', function(req, res){

@@ -2,12 +2,6 @@ var express = require('express');
 var app = express();
 var http = require('http');
 var exec = require('child_process').exec;
-var testscript = exec('sh HelloWorld.sh');
-
-testscript.stdout.on('data', function(data){
-	console.log(data);
-});
-
 
 var inputs = [    { pin: '11', gpio: '17', value: 1 },
                   { pin: '12', gpio: '18', value: 0 }
@@ -38,7 +32,11 @@ app.get('/test', function(req, res){
 });
 
 app.get('/kakutest', function(req, res){
-	
+	var testscript = exec('sh HelloWorld.sh');
+	testscript.stdout.on('data', function(data){
+	console.log(data);
+	res.end(data);
+	});
 })
 
 app.get('/on', function(req, res){

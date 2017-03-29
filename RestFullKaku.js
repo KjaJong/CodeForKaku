@@ -5,13 +5,23 @@ var http = require('http');
 var inputs = [{ pin: '11', gpio: '17', value: 1 },
               { pin: '12', gpio: '18', value: 0 }];
 			  
-//Makes it so that the server serves static pages stored in the directory
-app.use(express['static'](__dirname ));
+// configure Express to serve index.html and any other static pages stored 
+// in the home directory
+app.use(express.static(__dirname));
 
-// Express route for incoming requests for a customer name
-app.get('/inputs/:id', function(req, res) {
-  res.status(200).send(inputs[req.params.id]);
-}); 
+// Express route for incoming requests for a single input
+app.get('/inputs/:id', function (req, res) {
+  // send an object as a JSON string
+  console.log('id = ' + req.params.id);
+  res.send(inputs[req.params.id]);
+}); // apt.get()
+
+// Express route for incoming requests for a list of all inputs
+app.get('/inputs', function (req, res) {
+  // send an object as a JSON string
+  console.log('all inputs');
+  res.status(200).send(inputs);
+}); // apt.get()
 
 // Express route for any other unrecognised incoming requests
 app.get('*', function(req, res) {

@@ -3,34 +3,46 @@
  <head>
    <meta charset="utf-8" />
    <title>Kaku API</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>	
  </head>
  
  <script language="javascript">
-function Doxml(pressed)
-{
-	switch(pressed){
-		case 1:
-			break;
-				
-		case 2:
-			break;
-					
-		case 3:
-			var xmlHttp = new XMLHttpRequest();
-			//.open("GET","//145.48.205.45:3000/Bon",true);
-			xmlHttp.send("GET","//145.48.205.45:3000/Bon",true);
-			console.log("B on");
-			break;
-				
-		case 4:
-			var xmlHttp = new XMLHttpRequest();
-			//xmlHttp.open("GET","//145.48.205.45:3000/Boff",true);
-			xmlHttp.send("GET","//145.48.205.45:3000/Boff",true);
-			console.log("B off");
-			break;
-	}
+ function Bon(){
+ 	console.log("B on");
+	var xhr = createCORSRequest('GET', 'http://145.48.205.45:3000/Bon');
+	console.log("xhr");
+	xhr.send();
+ }
+
+ function Boff(){
+ 	console.log("B off");
+	var xhr = createCORSRequest('GET', 'http://145.48.205.45:3000/Boff');
+	console.log("xhr");
+	xhr.send();
+ }
+
+ function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
 }
-</script>
+
+// Helper method to parse the title tag from the response.
+function getTitle(text) {
+  return text.match('<title>(.*)?</title>')[1];
+}
+
+ </script>
  
  <body>
    <H1>Kaku API made by Menno de Jong</H1>
@@ -38,8 +50,8 @@ function Doxml(pressed)
    <table>
 	   <tr>
 		<td>Kaku 2: </td>
-		<td><button type = "button" onclick="Doxml(3)">AAN</button></td>
-		<td><button type = "button" onclick="Doxml(4)">UIT</button></td>
+		<td><button type = "button" onclick="Bon()" name="3" id="3">AAN</button></td>
+		<td><button type = "button" onclick="Boff()" name="4" id="4">UIT</button></td>
 	   </tr>
    </table>	
  </body>

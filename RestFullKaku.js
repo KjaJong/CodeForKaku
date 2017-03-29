@@ -25,24 +25,10 @@ app.get('/inputs', function (req, res) {
   res.status(200).send(inputs);
 }); // apt.get()
 
-// Express route for any other unrecognised incoming requests
-app.get('*', function(req, res) {
-  res.status(404).send('Unrecognised API call');
-});
-
-// Express route to handle errors
-app.use(function(err, req, res, next) {
-  if (req.xhr) {
-    res.status(500).send('Oops, Something went wrong!');
-  } else {
-    next(err);
-  }
-});
-
 app.get('/test', function(req, res){
-	console.log("Received a test call.")
+	console.log("Received a test call.");
 	res.end("Test succesfull.");
-})
+});
 
 app.get('/on', function(req, res){
 	//Send code to switch the kaku on
@@ -53,6 +39,21 @@ app.get('/off', function(req, res){
 	//Send code to switch the kaku off
 	res.end("Kaku should be off.");
 })
+
+// Express route for any other unrecognised incoming requests
+// The asterix catches everything not above the call, as the asterix is a wildcard for everything.
+app.get('*', function (req, res) {
+  res.status(404).send('Unrecognised API call');
+});
+
+// Express route to handle errors
+app.use(function (err, req, res, next) {
+  if (req.xhr) {
+    res.status(500).send('Oops, Something went wrong!');
+  } else {
+    next(err);
+  }
+}); // apt.use()
 
 var server = app.listen(3000, function () {
 

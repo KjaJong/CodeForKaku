@@ -1,5 +1,16 @@
 var express = require('express');
 var app = express();
+var http = require('http');
+
+var inputs = [{ pin: '11', gpio: '17', value: 1 },
+              { pin: '12', gpio: '18', value: 0 }];
+			  
+app.use(express['static'](__dirname ));
+
+// Express route for incoming requests for a customer name
+app.get('/inputs/:id', function(req, res) {
+  res.status(200).send(inputs[req.params.id]);
+}); 
 
 app.get('/test', function(req, res){
 	console.log("Received a test call.")

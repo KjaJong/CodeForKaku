@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express();
 var http = require('http');
-var sys = require('sys')
 var exec = require('child_process').exec;
-var child;
+var testscript = exec('sh HelloWorld.sh')
+
 
 var inputs = [    { pin: '11', gpio: '17', value: 1 },
                   { pin: '12', gpio: '18', value: 0 }
@@ -34,13 +34,7 @@ app.get('/test', function(req, res){
 });
 
 app.get('/kakutest', function(req, res){
-	child = exec("pwd", function (error, stdout, stderr) {
-	sys.print('stdout: ' + stdout);
-	sys.print('stderr: ' + stderr);
-	if (error !== null) {
-		console.log('exec error: ' + error);
-		}
-	})
+	
 })
 
 app.get('/on', function(req, res){

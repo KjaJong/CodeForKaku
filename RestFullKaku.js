@@ -2,12 +2,14 @@ var express = require('express');
 var app = express();
 var http = require('http');
 
-var inputs = [{ pin: '11', gpio: '17', value: 1 },
-              { pin: '12', gpio: '18', value: 0 }];
+var inputs = [    { pin: '11', gpio: '17', value: 1 },
+                  { pin: '12', gpio: '18', value: 0 }
+                ];
+
 			  
 // configure Express to serve index.html and any other static pages stored 
 // in the home directory
-app.use(express.static(__dirname/CodeForKaku));
+app.use(express.static(__dirname));
 
 // Express route for incoming requests for a single input
 app.get('/inputs/:id', function (req, res) {

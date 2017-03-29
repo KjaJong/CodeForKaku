@@ -39,8 +39,8 @@ app.get('/kakutest', function(req, res){
 	sys.print('stderr: ' + stderr);
 	if (error !== null) {
 		console.log('exec error: ' + error);
-	}
-  }
+		}
+	})
 })
 
 app.get('/on', function(req, res){

@@ -3,29 +3,6 @@ var app = express();
 var http = require('http');
 var exec = require('child_process').exec;
 
-var inputs = [    { pin: '11', gpio: '17', value: 1 },
-                  { pin: '12', gpio: '18', value: 0 }
-                ];
-
-			  
-// configure Express to serve index.html and any other static pages stored 
-// in the home directory
-app.use(express.static(__dirname));
-
-// Express route for incoming requests for a single input
-app.get('/inputs/:id', function (req, res) {
-  // send an object as a JSON string
-  console.log('id = ' + req.params.id);
-  res.send(inputs[req.params.id]);
-}); // apt.get()
-
-// Express route for incoming requests for a list of all inputs
-app.get('/inputs', function (req, res) {
-  // send an object as a JSON string
-  console.log('all inputs');
-  res.status(200).send(inputs);
-}); // apt.get()
-
 app.get('/test', function(req, res){
 	console.log("Received a test call.");
 	res.end("Test succesfull.");
@@ -54,15 +31,6 @@ app.get('/Boff', function(req, res){
 app.get('*', function (req, res) {
   res.status(404).send('Unrecognised API call');
 });
-
-// Express route to handle errors
-app.use(function (err, req, res, next) {
-  if (req.xhr) {
-    res.status(500).send('Oops, Something went wrong!');
-  } else {
-    next(err);
-  }
-}); // apt.use()
 
 var server = app.listen(3000, function () {
 

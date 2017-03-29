@@ -32,7 +32,7 @@ app.get('/test', function(req, res){
 });
 
 app.get('/kakutest', function(req, res){
-	var testscript = exec('sh HelloWorld.sh');
+	var testscript = exec('sh HelloWorld.sh ../');
 	testscript.stdout.on('data', function(data){
 	console.log(data);
 	res.end(data);

@@ -41,7 +41,7 @@ app.get('/kakutest', function(req, res){
 		console.log('exec error: ' + error);
 	}
   }
-}
+})
 
 app.get('/on', function(req, res){
 	//Send code to switch the kaku on

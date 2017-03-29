@@ -3,6 +3,10 @@ var app = express();
 var http = require('http');
 var exec = require('child_process').exec;
 
+// configure Express to serve index.html and any other static pages stored 
+// in the home directory
+app.use(express.static(__dirname));
+
 app.get('/test', function(req, res){
 	console.log("Received a test call.");
 	res.end("Test succesfull.");

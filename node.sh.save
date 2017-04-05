@@ -1,0 +1,5 @@
+
+#!/bin/bash
+#runs the server on startup
+
+node RestFullKaku.js
